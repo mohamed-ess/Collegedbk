@@ -1,0 +1,212 @@
+1* Write an SQL query to Readers details for Reader with the First_Name as “Vipul” and “Satish” from Readers table.?
+
+Select * from Readers where First_Name in ('Vipul','Satish');
+ 
+2*  Write an SQL query to print details of Reader excluding last names, “Vipul” and “Satish” from Readers table.?
+
+Select * from Readers where LastName not in ('Vipul','Satish');
+
+3* Write an SQL query to show only odd rows from a table.??
+
+SELECT * FROM Readers WHERE MOD (Reader_ID, 2) <> 0;
+
+4* Write an SQL query to show only even rows from a table.??
+
+SELECT * FROM Readers WHERE MOD (Reader_ID, 2) = 0;
+ 
+5* Write an SQL query to clone a new table from another table.?
+
+SELECT * INTO ReaderClone FROM Readers;
+SELECT * INTO ReaderClone FROM Readers WHERE 1 = 0;
+CREATE TABLE ReaderClone LIKE Readers;
+
+
+6* Write an SQL query to fetch “First_Name” from Readers  table using the alias name as <First_Name>
+
+Select First_Name AS ReaderName from Readers;
+
+7* Write an SQL query to fetch “First_Name” from Readers table in upper case.
+
+Select upper(First_Name) from Readers;
+
+8* Write an SQL query to fetch unique values of Title from Books table.
+
+Select distinct Title from Books;
+
+9* Write an SQL query to find the position of the alphabet (‘a’) in the First_Name column ‘alaa’ from Authers table.
+
+Select INSTR(First_Name, BINARY'a') from Authors where First_Name = 'alaa';
+
+10* Write an SQL query to fetch intersecting records of two tables?
+
+(SELECT * FROM Reader)
+INTERSECT
+(SELECT * FROM ReaderClone);
+ 
+11*  Write an SQL query to show the second highest Price from a table.?
+
+Select max(Price) from Books 
+where Price not in (Select max(Price) from Book);
+ 
+12* Write an SQL query to show only odd rows from a table.??
+
+SELECT * FROM Books WHERE MOD (Book_ID, 2) <> 0;
+
+13* Write an SQL query to show only even rows from a table.??
+
+SELECT * FROM Books WHERE MOD (Book_ID, 2) = 0;
+ 
+14* Write an SQL query to clone a new table from another table.?
+
+SELECT * INTO BookClone FROM Books;
+SELECT * INTO BookClone FROM Books WHERE 1 = 0;
+CREATE TABLE BookClone LIKE Books;
+
+
+15* Write an SQL query to fetch intersecting records of two tables?
+
+(SELECT * FROM MBooks)
+INTERSECT
+(SELECT * FROM BookClone);
+
+
+16* Write an SQL query to print the First_Name from Authors table after removing white spaces from the right side.
+
+Select RTRIM(First_Name) from Authors;
+
+17* Write an SQL query to print the Last_Name from Readers table after removing white spaces from the left side.
+
+Select LTRIM(Last_Name) from Readers;
+
+18* Write an SQL query that fetches the unique values of Title from Books table and prints its length.
+
+Select distinct length(Title) from Books;
+
+19* Write an SQL query to print the FIRST_NAME from Readers table after replacing ‘a’ with ‘A’.
+
+Select REPLACE(FIRST_NAME,'a','A') from Readers;
+
+20*  Write an SQL query to show the second highest Price from a table.?
+
+Select max(Price) from Books 
+where Price not in (Select max(Price) from Book);
+
+
+
+
+
+			select statments
+
+-- 6 insert statment
+
+INSERT INTO Readers VALUES(1,'Lotfy ','shawky',4366666,Alex);
+INSERT INTO Readers VALUES(2,'Saad','fathy',40302010,Cairo);
+INSERT INTO Readers VALUES(3,'Tarek','omar',012223344,tanta);
+INSERT INTO Books VALUES(1,'how to love',2020,'50L.E',love);
+INSERT INTO Books VALUES(2,'intro to fiction',2017,'70L.E',fiction);
+
+
+
+
+
+
+-- 3 select using subquery
+
+
+SELECT * 
+   FROM Readers 
+   WHERE ReaderID IN (SELECT Reader_ID
+         FROM Readers 
+         WHERE Reader_ID = 1) ;
+
+SELECT * 
+   FROM Books 
+   WHERE Price IN (SELECT Price
+         FROM Books 
+         WHERE Price = 210 ) ;
+
+
+SELECT * 
+   FROM Authors 
+   WHERE AuthorID IN (SELECT Author_ID
+         FROM Authors 
+         WHERE Author_ID = 1) ;
+
+
+
+
+
+
+
+
+-- 2 select statments using count and group functions
+
+SELECT Book_ID, COUNT(*)  'count'
+FROM Books 
+GROUP BY Book_ID;
+
+SELECT First_Name, COUNT(*) 'count'
+FROM Readers 
+GROUP BY Readers;
+
+
+
+
+
+
+-- 5 update statments
+
+UPDATE Readers
+SET First_Name = 'neno'
+WHERE Reader_ID = 1;
+
+UPDATE Readers
+SET Last_Name = 'kinakom'
+WHERE Reader_ID = 2;
+
+UPDATE Authors
+SET Phone_NO = '01222222'
+WHERE AuthorID = 3;
+
+UPDATE Books
+SET Price = 200 
+WHERE Book_ID = 1;
+
+UPDATE Books
+SET Title = 'Loveeee' 
+WHERE Book_ID = 2;
+
+
+
+-- 5 select statements using different joins
+
+SELECT Readers.Reader_ID, Reader.First_Name
+FROM Readers
+INNER JOIN Book ON Readers.Reader_ID=Readers.Reader_ID;
+
+SELECT Readers.Reader_ID, Readers.First_Name
+FROM Readers
+LEFT JOIN Book ON Readers.Reader_ID=Readers.Reader_ID;
+
+SELECT Authors.Author_ID, Author.First_Name
+FROM Authors
+RIGHT JOIN Phone_NO ON Authors.Author_ID=Authors.Author_ID;
+
+SELECT Authors.Author_ID, Authors.First_Name
+FROM Authors
+FULL JOIN First-Name ON Authors.Author_ID=Authors.Author_ID;
+
+SELECT Books.Book_ID, Books.Book_ID
+FROM Books
+INNER JOIN Books ON Books.Book_ID=Books.Book_ID;
+
+
+
+-- 5 delete statments
+
+DELETE FROM Readers WHERE Reade_ID= 1;
+DELETE FROM Readers WHERE Reader_ID= 2;
+DELETE FROM Readers WHERE Reader_ID= 3;
+DELETE FROM Authors WHERE Author_ID= 1;
+DELETE FROM Authors WHERE Author_ID= 2;
+
