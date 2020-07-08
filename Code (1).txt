@@ -1,0 +1,52 @@
+CREATE TABLE [Categories] (
+  [Category_ID] INT NOT NULL,
+  [Category_Name] VARCHAR(50),
+  [BookID] INT NOT NULL,
+  PRIMARY KEY ([Category_ID])
+);
+
+CREATE INDEX [FK] ON  [Categories] ([BookID]);
+
+CREATE TABLE [Readers] (
+  [Reader_ID] INT NOT NULL,
+  [First_Name] VARCHAR(50),
+  [Last_Name] VARCHAR(50),
+  [Phone_NO] INT NOT NULL,
+  [Address] VARCHAR(50),
+  PRIMARY KEY ([Reader_ID])
+);
+
+CREATE TABLE [Publishers] (
+  [Publisher_ID] INT NOT NULL,
+  [First_Name] VARCHAR(50),
+  [Last_Name] VARCHAR(50),
+  [Address] VARCHAR(50),
+  [Phone_NO] INT NOT NULL,
+  [Nationality] VARCHAR(50),
+  [Author_ID] <INT NOT NULL,
+  PRIMARY KEY ([Publisher_ID])
+);
+
+CREATE INDEX [ ] ON  [Publishers] ([First_Name]);
+
+CREATE INDEX [FK] ON  [Publishers] ([Author_ID]);
+
+CREATE TABLE [Authors] (
+  [Author_ID] INT NOT NULL,
+  [First_Name] VARCHAR(50),
+  [Last_Name] VARCHAR(50),
+  [Phone_NO] INT NOT NULL,
+  PRIMARY KEY ([Author_ID])
+);
+
+CREATE TABLE [Books] (
+  [Book_ID] INT NOT NULL,
+  [Title] VARCHAR(50),
+  [Publishing_Date] DATE NOT NULL,
+  [Price] INT NOT NULL,
+  [Category_ID] INT NOT NULL,
+  PRIMARY KEY ([Book_ID])
+);
+
+CREATE INDEX [FK] ON  [Books] ([Category_ID]);
+
